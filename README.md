@@ -88,11 +88,11 @@ Then open http://127.0.0.1:8000/ in your browser.
 3. Participants → Register → Attend → Receive certificate via dashboard.
 
 
-##Author
+## Author
 
-###Madon Veronica
+### Madon Veronica
 Aspiring Software Developer | Passionate about building scalable, user-centric applications.
 
-🌐 Portfolio
+🌐 Portfolio<br>
 📫 Email: madon.veronica73@gmail.com
 
