@@ -1,0 +1,88 @@
+{% if notifications %}
+    <div class="notification-container">
+        <h3>🔔 Notifications</h3>
+        <ul class="notification-list">
+            {% for notification in notifications %}
+                <li>📢 {{ notification.message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <p class="no-notifications">No notifications</p>
+{% endif %}
+<div class="dashboard-container">
+    <h2>Participant Dashboard</h2>
+    <div class="participant-dashboard-links">
+        <br><a href="{% url 'upcoming_events' %}" class="btn">📅 Upcoming Events</a></br>
+
+        <br><a href="{% url 'attended_events' %}" class="btn">🎟️ Attended Events</a></br>
+
+        <br><a href="{% url 'participant_logout' %}" class="logout-btn">🚪 Logout </a></br>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+    .notification-container {
+        max-width: 500px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h3 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .notification-list {
+        list-style: none;
+        padding: 0;
+    }
+    .notification-list li {
+        background: #e9f5ff;
+        color: #007bff;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px 0;
+    }
+    .no-notifications {
+        color: #777;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .attended-events {
+        margin-top: 20px;
+    }
+    .btn {
+        display: inline-block;
+        text-decoration: none;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .logout-btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #dc3545 !important;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    .logout-btn:hover {
+            background-color: #b52b38 !important;
+        }
+</style>

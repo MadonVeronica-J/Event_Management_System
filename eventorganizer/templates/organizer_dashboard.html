@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .dashboard-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .dashboard-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .dashboard-links a {
+            display: block;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 16px;
+        }
+        .dashboard-links a:hover {
+            background-color: #0056b3;
+        }
+        .logout-btn {
+            background-color: #dc3545 !important;
+        }
+        .logout-btn:hover {
+            background-color: #b52b38 !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <h2>Organizer Dashboard</h2>
+
+
+    
+
+    <div class="dashboard-links">
+        <a href="{% url 'request_event' %}">📅 Request a New Event</a>
+        <a href="{% url 'my_events' %}">✅ Your Events</a>
+        <a href="{% url 'check_venue' %}">🏛️ Check Venue Availability</a>
+        <a href="{% url 'organizer_logout' %}" class="logout-btn">🚪 Logout</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+{% block content %}
+<div class="disapproved-container">
+    <h2>❌ Disapproved Events</h2>
+
+    {% if events %}
+        <ul class="event-list">
+            {% for event in events %}
+                <li class="event-item">
+                    <h3>{{ event.name }}</h3>
+                    <p>📅 Date: {{ event.date|date:"F d, Y" }} 🕒 {{ event.date|time:"h:i A" }}</p>
+                    <p>📍 Venue: {{ event.venue.name }}</p>
+                    <p class="status">❌ Status: Disapproved</p>
+                    {% if event.rejection_reason %}
+                        <p class="reason">📌 Reason: {{ event.rejection_reason }}</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-events">No disapproved events.</p>
+    {% endif %}
+
+    <a href="{% url 'my_events' %}" class="back-link">⬅️ Back </a>
+</div>
+
+<style>
+    .disapproved-container {
+        text-align: center;
+        padding: 30px;
+    }
+    h2 {
+        color: #d32f2f;
+        margin-bottom: 20px;
+    }
+    .event-list {
+        list-style: none;
+        padding: 0;
+    }
+    .event-item {
+        background: #ffebee;
+        padding: 20px;
+        margin: 10px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 500px;
+        text-align: left;
+    }
+    .event-item h3 {
+        color: #b71c1c;
+        margin-bottom: 5px;
+    }
+    .status {
+        font-weight: bold;
+        color: #d32f2f;
+    }
+    .reason {
+        font-style: italic;
+        color: #b71c1c;
+    }
+    .no-events {
+        font-size: 18px;
+        color: #666;
+    }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #d32f2f;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

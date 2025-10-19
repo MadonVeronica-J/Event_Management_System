@@ -1,0 +1,37 @@
+{% block content %}
+    <div style="max-width: 800px; margin: auto; padding: 20px; text-align: center;">
+        <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">📅 Upcoming Events</h2>
+
+        {% if upcoming_events %}
+            <ul style="list-style: none; padding: 0;">
+                {% for event in upcoming_events %}
+                    <li style="background: #ecf0f1; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+                        <h3 style="color: #3498db; margin-bottom: 5px;">{{ event.name }}</h3>
+                        <p style="margin: 5px 0; font-size: 16px; color: #555;">
+                            📅 <strong>{{ event.date|date:"F d, Y" }}</strong>  
+                            🕒 <strong>{{ event.date|time:"h:i A" }}</strong>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p style="color: #e74c3c; font-size: 18px;">No upcoming events.</p>
+        {% endif %}
+        <a href="{% url 'participant_dashboard' %}" class="btn">⬅️ Back to Dashboard</a>
+    </div>
+    <style>
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}

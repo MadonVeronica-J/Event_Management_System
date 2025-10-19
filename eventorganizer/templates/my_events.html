@@ -1,0 +1,54 @@
+{% block content %}
+<div class="dashboard-container">
+    <h2>📂 Your Events</h2>
+
+    <div class="event-options">
+        <a href="{% url 'approved_events' %}" class="event-link approved">✅ Approved Events</a>
+        <a href="{% url 'pending_events' %}" class="event-link pending">⏳ Pending Events</a>
+        <a href="{% url 'disapproved_events' %}" class="event-link disapproved">❌ Disapproved Events</a>
+    </div>
+
+    <br><a href="{% url 'organizer_dashboard' %}" class="back-link">⬅️ Back </a></br>
+</div>
+
+<style>
+    .dashboard-container {
+        text-align: center;
+        padding: 30px;
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .event-options {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    .event-link {
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 20px;
+        border-radius: 8px;
+        transition: 0.3s ease-in-out;
+    }
+    .approved { background-color: #28a745; color: white; }
+    .pending { background-color: #ffc107; color: black; }
+    .disapproved { background-color: #dc3545; color: white; }
+    .event-link:hover { opacity: 0.8; }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #d32f2f;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

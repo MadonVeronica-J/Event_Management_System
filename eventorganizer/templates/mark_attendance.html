@@ -1,0 +1,109 @@
+{% block content %}
+<div class="container">
+    <h2>📝 Mark Attendance for <span class="event-name">{{ event.name }}</span></h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>👤 Participant Name</th>
+                    <th>🏛️ Department</th>
+                    <th>✔️ Mark Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participant in participants %}
+                    <tr>
+                        <td>{{ participant.participant.username }}</td>
+                        <td>{{ participant.participant.department.name }}</td>
+                        <td>
+                            <input type="hidden" name="participant_id" value="{{ participant.participant.id }}">
+                            <select name="status_{{ participant.participant.id}}">
+                                <option value="Present">✅ Present</option>
+                                <option value="Absent">❌ Absent</option>
+                            </select>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button type="submit" class="btn">📌 Submit Attendance</button>
+    </form>
+
+    <a href="{% url 'approved_events' %}" class="back-btn">⬅️ Back to Approved Events</a>
+</div>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .event-name {
+        color: #007bff;
+        font-weight: bold;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+    td select {
+        padding: 5px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+        margin-top: 15px;
+        border: none;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #218838;
+    }
+    .back-btn {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+    .back-btn:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

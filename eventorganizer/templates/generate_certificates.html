@@ -1,0 +1,10 @@
+{% block content %}
+    <h2>Generate Certificates for {{ event.name }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Generate Certificates</button>
+    </form>
+
+    <a href="{% url 'approved_events' %}">Back</a>
+{% endblock %}

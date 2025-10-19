@@ -1,0 +1,108 @@
+{% block content %}
+<div class="container">
+    <h2>✅ Approved Events</h2>
+
+    {% if events %}
+        {% for event in events %} 
+            <div class="event-card">
+                <h3>📅 {{ event.name }}</h3>
+                <p>📍 Venue: {{ event.venue.name }}</p>
+                <p>🗓️ Date: {{ event.date }}</p>
+
+                <div class="buttons">
+                    <a href="{% url 'share_event' event.id %}" class="btn share">📤 Share</a>
+                    <a href="{% url 'event_participants' event.id %}" class="btn participants">👥 Participants</a>
+                    <a href="{% url 'upload_certificate_template' event.id %}" class="btn certificate">📜 Upload Certificate</a>
+                    <a href="{% url 'generate_certificates' event.id %}" class="btn generate"> Generate Certificate</a>
+                
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No approved events yet.</p>
+    {% endif %}
+
+    <a href="{% url 'my_events' %}" class="back-link">⬅️ Back </a>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .event-card {
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    h3 {
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+    p {
+        margin: 5px 0;
+        color: #555;
+    }
+    .buttons {
+        margin-top: 10px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 5px;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+    .btn.share {
+        background-color: #17a2b8;
+    }
+    .btn.participants {
+        background-color: #28a745;
+    }
+    .btn.certificate {
+        background-color: #ffc107;
+        color: #333;
+    }
+    .btn.generate {
+        background-color: #dc3545;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #d32f2f;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}
+  
+        

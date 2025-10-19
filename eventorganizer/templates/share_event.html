@@ -1,0 +1,89 @@
+{% block content %}
+<div class="container">
+    <h2>📢 Share Event with Departments</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="departments">📚 Select Departments:</label>
+        <select name="departments" id="departments" multiple>
+            {% for department in departments %}
+                <option value="{{ department.id }}">{{ department.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">📤 Share</button>
+    </form>
+    <a href="{% url 'approved_events' %}" class="back-link">⬅️ Back </a>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+    .container {
+        max-width: 500px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    select {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        cursor: pointer;
+    }
+    select[multiple] {
+        height: 120px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #d32f2f;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

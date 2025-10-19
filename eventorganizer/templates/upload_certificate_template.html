@@ -1,0 +1,108 @@
+{% block content %}
+<div class="container">
+    <h2>📄 Upload Certificate Template for <span class="event-name">{{ event.name }}</span></h2>
+
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+        {% csrf_token %}
+
+        <label for="certificate_template" class="file-label">📂 Select a Certificate Template:</label>
+        <input type="file" id="certificate_template" name="certificate_template" required>
+
+        <button type="submit" class="btn-upload">📤 Upload</button>
+    </form>
+
+    <a href="{% url 'approved_events' %}" class="btn-back">⬅️ Back to Approved Events</a>
+</div>
+
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 450px;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .event-name {
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    /* Form Styling */
+    .upload-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .file-label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    input[type="file"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        background: #f0f8ff;
+        cursor: pointer;
+    }
+
+    .btn-upload {
+        margin-top: 15px;
+        background: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-upload:hover {
+        background-color: #0056b3;
+    }
+
+    /* Back Button */
+    .btn-back {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        background-color: #6c757d;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-back:hover {
+        background-color: #5a6268;
+    }
+</style>
+
+{% endblock %}

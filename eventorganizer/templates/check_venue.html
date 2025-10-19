@@ -1,0 +1,94 @@
+{% block content %}
+<div class="container">
+    <h2>📅 Check Venue Availability</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="venue">🏛️ Select Venue:</label>
+        <select name="venue" id="venue" required>
+            <option value="" disabled selected>-- Choose a Venue --</option>
+            {% for venue in venues %}
+                <option value="{{ venue.id }}">{{ venue.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="event_date">📆 Select Date:</label>
+        <input type="date" name="date" required>
+
+        <button type="submit" class="btn">🔍 Check Availability</button>
+    </form>
+
+    {% if message %}
+        <p class="message">{{ message }}</p>
+    {% endif %}
+    <a href="{% url 'organizer_dashboard' %}" class="back-link">⬅️ Back </a>
+</div>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+    .container {
+        max-width: 500px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+    select, input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .message {
+        margin-top: 15px;
+        font-size: 16px;
+        color: #28a745;
+    }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #d32f2f;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

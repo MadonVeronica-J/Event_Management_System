@@ -1,0 +1,96 @@
+{% block content %}
+<div class="form-container">
+    <h2>📌 Request Event Approval</h2>
+
+    <form method="post" class="event-form">
+        {% csrf_token %}
+        
+        <label for="name">📛 Event Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter event name">
+
+        <label for="description">📝 Event Description:</label>
+        <textarea id="description" name="description" required placeholder="Briefly describe the event"></textarea>
+
+        <label for="datetime">📅 Event Date & Time:</label>
+        <input type="datetime-local" id="date" name="date" required>
+
+        <label for="venue">🏛️ Select Venue:</label>
+        <select id="venue" name="venue_id" required>
+            <option value="" disabled selected>-- Choose a Venue --</option>
+            {% for venue in venues %}
+                <option value="{{ venue.id }}">{{ venue.name }} (Capacity: {{ venue.capacity }})</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">✅ Submit Request</button>
+    </form>
+
+    <a href="{% url 'organizer_dashboard' %}" class="back-link">⬅️ Back to Dashboard</a>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .form-container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 400px;
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    input[type="datetime-local"] {
+        cursor: pointer;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .back-link {
+        display: block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #007bff;
+        font-size: 16px;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

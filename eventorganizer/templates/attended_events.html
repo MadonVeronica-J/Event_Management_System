@@ -1,0 +1,74 @@
+{{% block content %}
+<div class="container">
+    <h2>🎟️ Attended Events</h2>
+
+    {% if attended_events %}
+        <ul class="event-list">
+            {% for record in attended_events %}
+                <li>
+                    <strong>{{ record.event.name }}</strong> - {{ record.event.date }}
+
+                    {% if record.certificate %}
+                        <a href="{{ record.certificate.url }}" class="btn-download" download>📜 Download Certificate</a>
+                    {% else %}
+                        <span class="no-certificate">⚠️ Certificate not available</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-events">You haven't attended any events yet.</p>
+    {% endif %}
+
+    <a href="{% url 'participant_dashboard' %}" class="btn">⬅️ Back to Dashboard</a>
+</div>
+
+<style>
+    .container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .event-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    .event-list li {
+        background: #f0f8ff;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .btn-download {
+        background: #28a745;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .btn-download:hover {
+        background: #218838;
+    }
+    .no-certificate {
+        color: #dc3545;
+        font-weight: bold;
+    }
+    .btn {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

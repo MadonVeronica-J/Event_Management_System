@@ -1,0 +1,71 @@
+{% block content %}
+<div class="container">
+    <h2>📝 Mark Attendance for <span class="event-name">{{ event }}</span></h2>
+
+    <ul class="participant-list">
+        {% for participant in participants %}
+            <li>👤 {{ participant }}</li>
+        {% empty %}
+            <p class="no-participants">No participants yet.</p>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'mark_attendance' event.id %}" class="btn">✔️ Mark Attendance</a>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+    .container {
+        max-width: 500px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .event-name {
+        color: #007bff;
+        font-weight: bold;
+    }
+    .participant-list {
+        list-style: none;
+        padding: 0;
+    }
+    .participant-list li {
+        background: #e9ecef;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .no-participants {
+        color: #dc3545;
+        font-style: italic;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+        margin-top: 15px;
+    }
+    .btn:hover {
+        background-color: #218838;
+    }
+</style>
+
+{% endblock %}
